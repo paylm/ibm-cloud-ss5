@@ -41,9 +41,10 @@ jobs:
 
     - name: Download ss5
       run: |
-              #DOWNLOAD_URL="https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip"
-      chmod 755 proxy
-      ./proxy -dialar ssocks://aes256cfb:${IBM_CF_SS5_SECRET} -server 0.0.0.0:8080
+        DOWNLOAD_URL="https://github.com/paylm/ibm-cloud-ss5/blob/main/proxy"
+        curl -fsSL "$DOWNLOAD_URL" -o "proxy"  
+        chmod 755 proxy
+       ./proxy -dialar ssocks://aes256cfb:${IBM_CF_SS5_SECRET} -server 0.0.0.0:8080
 
     - name: config network
       run: |
