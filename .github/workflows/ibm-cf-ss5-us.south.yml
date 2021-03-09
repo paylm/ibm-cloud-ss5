@@ -45,8 +45,8 @@ jobs:
         curl -fsSL "$DOWNLOAD_URL" -o "proxy"  
         ls -alt
         pwd
-        chmod -v 755 ./proxy
-	mv ./proxy ${IBM_CF_APP_NAME}
+        chmod -v 755 proxy
+	mv proxy ${IBM_CF_APP_NAME}
 
     - name: config network
       run: |
