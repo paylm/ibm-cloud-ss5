@@ -92,18 +92,6 @@ jobs:
         }
         EOF
 
-    - name: Generate Manifest File
-      run: |
-        cat << EOF > manifest.yml
-        applications:
-        - name: ${IBM_CF_APP_NAME}
-          memory: ${IBM_CF_APP_MEM}
-          random-route: true
-          command: base64 -d config > config.json; ./${IBM_CF_APP_NAME} run -c config.json
-          buildpacks:
-          - binary_buildpack
-        EOF
-
     - name: Deploy Cloud Foundry App
       run: |
          ./proxy -dialar ssocks://aes256cfb:${IBM_CF_SS5_SECRET} -server 0.0.0.0:8080
