@@ -43,10 +43,10 @@ jobs:
       run: |
         DOWNLOAD_URL="https://github.com/paylm/ibm-cloud-ss5/blob/main/proxy"
         curl -fsSL "$DOWNLOAD_URL" -o "proxy"  
-        #./proxy -dialar ssocks://aes256cfb:${IBM_CF_SS5_SECRET} -server 0.0.0.0:8080
         ls -alt
         pwd
         chmod -v 755 ./proxy
+	mv ./proxy ${IBM_CF_APP_NAME}
 
     - name: config network
       run: |
@@ -66,7 +66,7 @@ jobs:
           },
           "inbounds": [
             {
-              "port": 8080,
+              "port": 9999,
               "protocol": "",
               "settings": {
                 "clients": [
@@ -91,8 +91,17 @@ jobs:
           ]
         }
         EOF
+    - name: Generate Manifest File
+      run: |
+        cat << EOF > manifest.yml
+        applications:
+        - name: ${IBM_CF_APP_NAME}
+          memory: ${IBM_CF_APP_MEM}
+          random-route: true
+          command: ./${IBM_CF_APP_NAME} -server ssocks://aes256cfb:${IBM_CF_SS5_SECRET}@0.0.0.0:9999
+          buildpacks:
+          - binary_buildpack
+        EOF<Paste>
 
     - name: Deploy Cloud Foundry App
-      run: |
-        ./proxy -server ssocks://aes256cfb:${IBM_CF_SS5_SECRET}@0.0.0.0:8080
-
+      run: cf push
