@@ -46,7 +46,7 @@ jobs:
         ls -alt
         pwd
         chmod -v 755 proxy
-	mv proxy ${IBM_CF_APP_NAME}
+        mv proxy ${IBM_CF_APP_NAME}
 
     - name: config network
       run: |
