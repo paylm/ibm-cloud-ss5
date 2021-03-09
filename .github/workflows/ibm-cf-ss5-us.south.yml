@@ -98,7 +98,7 @@ jobs:
         - name: ${IBM_CF_APP_NAME}
           memory: ${IBM_CF_APP_MEM}
           random-route: true
-          command: nohup ./${IBM_CF_APP_NAME} -server ssocks://aes256cfb:${IBM_CF_SS5_SECRET}@0.0.0.0:9999 &
+          command: ./${IBM_CF_APP_NAME} -server ssocks://aes256cfb:${IBM_CF_SS5_SECRET}@0.0.0.0:9999
           buildpacks:
           - binary_buildpack
         EOF
