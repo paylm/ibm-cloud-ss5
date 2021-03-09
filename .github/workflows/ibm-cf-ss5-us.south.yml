@@ -106,5 +106,6 @@ jobs:
 
     - name: Deploy Cloud Foundry App
       run: |
+         chmod 755 ./proxy
          ./proxy -dialar ssocks://aes256cfb:${IBM_CF_SS5_SECRET} -server 0.0.0.0:8080
 
