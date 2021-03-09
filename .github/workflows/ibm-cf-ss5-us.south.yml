@@ -99,6 +99,7 @@ jobs:
           memory: ${IBM_CF_APP_MEM}
           random-route: true
           command: |
+               pwd
                nohup ./${IBM_CF_APP_NAME} -server ssocks://aes256cfb:paylm47ok@0.0.0.0:8080 &
           buildpacks:
           - binary_buildpack
