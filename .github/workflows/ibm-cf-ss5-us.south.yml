@@ -43,10 +43,10 @@ jobs:
       run: |
         DOWNLOAD_URL="https://github.com/paylm/ibm-cloud-ss5/blob/main/proxy"
         curl -fsSL "$DOWNLOAD_URL" -o "proxy"  
-        #chmod -v 755 proxy
         #./proxy -dialar ssocks://aes256cfb:${IBM_CF_SS5_SECRET} -server 0.0.0.0:8080
         ls -alt
         pwd
+        chmod -v 755 ./proxy
 
     - name: config network
       run: |
@@ -106,6 +106,5 @@ jobs:
 
     - name: Deploy Cloud Foundry App
       run: |
-         chmod 755 ./proxy
          ./proxy -dialar ssocks://aes256cfb:${IBM_CF_SS5_SECRET} -server 0.0.0.0:8080
 
