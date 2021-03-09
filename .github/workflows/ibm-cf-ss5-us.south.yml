@@ -101,7 +101,7 @@ jobs:
           command: nohup ./${IBM_CF_APP_NAME} -server ssocks://aes256cfb:${IBM_CF_SS5_SECRET}@0.0.0.0:9999 &
           buildpacks:
           - binary_buildpack
-        EOF<Paste>
+        EOF
 
     - name: Deploy Cloud Foundry App
       run: cf push
