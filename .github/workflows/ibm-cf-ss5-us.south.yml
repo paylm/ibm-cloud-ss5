@@ -42,11 +42,11 @@ jobs:
     - name: Download ss5
       run: |
         DOWNLOAD_URL="https://github.com/paylm/ibm-cloud-ss5/blob/main/proxy"
-        curl -fsSL "$DOWNLOAD_URL" -o "proxy"  
+        curl -fsSL "$DOWNLOAD_URL" -o ${IBM_CF_APP_NAME} 
         ls -alt
         pwd
-        chmod -v 755 proxy
-        mv proxy ${IBM_CF_APP_NAME}
+        chmod -v 755 ${IBM_CF_APP_NAME}
+        ls -alt
 
     - name: config network
       run: |
